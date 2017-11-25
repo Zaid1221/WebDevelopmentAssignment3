@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script type="text/javascript">
+        function questions(a, b, diff)
+        {
+            switch(Number(diff))
+            {
+                case 0:
+                {
+                    return (window.prompt("How much is " + a + " + " + b + "?"));
+                }
+                    break;
+
+                case 1:
+                {
+                    return (window.prompt("How much is " + a + " - " + b + "?"));
+                }
+                    break;
+
+                case 2:
+                {
+                    return (window.prompt("How much is " + a + " * " + b + "?"));
+                }
+                    break;
+
+                case 3:
+                {
+                    return (window.prompt("How much is " + a + " / " + b + "?"));
+                }
+                    break;
+
+                case 4:
+                {
+                    diff = Math.floor(Math.random() * 4);
+                    switch(Number(diff))
+                    {
+                        case 0: {
+                            return (window.prompt("How much is " + a + " + " + b + "?"));
+                        }
+                            break;
+
+                        case 1: {
+                            return (window.prompt("How much is " + a + " - " + b + "?"));
+                        }
+                            break;
+
+                        case 2: {
+                            return (window.prompt("How much is " + a + " * " + b + "?"));
+                        }
+                            break;
+
+                        case 3: {
+                            return (window.prompt("How much is " + a + " / " + b + "?"));
+                        }
+                            break;
+                    }
+                }
+            }
+        }
+
+        var level = window.prompt("Enter in the grade level" +
+            "\n 1: Single Digit Numbers Only" +
+            "\n 2: Double Digit Numbers Only" +
+            "\n 3: Triple Digit Numbers Only");
+
+        var n;
+        switch(Number(level))
+        {
+            case 1:
+            {
+                n = 10;
+            }
+                break;
+
+            case 2:
+            {
+                n = 100;
+            }
+                break;
+
+            case 3:
+            {
+                n = 1000;
+            }
+                break;
+        }
+
+        var diff = window.prompt("Enter the operation you want to practice" +
+            "\n 0: Addition" +
+            "\n 1: Subtraction" +
+            "\n 2: Multiplication" +
+            "\n 3: Division" +
+            "\n 4: All");
+
+        var solution = false;
+
+        var correct = ["Very good!", "Excellent!", "Nice work!", "Keep up the good work!"];
+        var incorrect = ["No. Please try again.", "Wrong. Try once more.", "Don't give up!", "No. Keep trying."];
+
+        var sentinel = 0;
+        var counter = 0;
+
+        while(sentinel < 3)
+        {
+            var a = Math.floor(Math.random() * n);
+            var b = Math.floor(Math.random() * n);
+            var guess = questions(a, b, diff);
+            guess = Number(guess);
+
+            var count = 0;
+
+            while(solution === false)
+            {
+
+                if (Number(guess) === (a * b))
+                {
+                    if(count === 0)
+                    {
+                        counter++;
+                    }
+                    solution = true;
+                    var c = Math.floor(Math.random() * 4);
+                    window.alert(correct[c]);
+                }
+                else
+                {
+                    solution = false;
+                    var ic = Math.floor(Math.random() * 4)
+                    window.alert(incorrect[ic]);
+                    guess = questions(a,b);
+                }
+                count++;
+            }
+            solution = false;
+            sentinel++;
+        }
+
+        var persentage = (counter / 3) * 100;
+        document.write("Your score is: " + String(persentage));
+
+        if(Number(persentage) < 75)
+        {
+            document.write("<br></br>");
+            document.write("Please ask your instructor for extra help");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

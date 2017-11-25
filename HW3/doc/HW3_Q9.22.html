@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script type="text/javascript">
+        function questions(a, b)
+        {
+            return (window.prompt("How much is " + a + " times " + b + "?"));
+        }
+
+        var solution = false;
+
+        var a = Math.floor(Math.random() * 10);
+        var b = Math.floor(Math.random() * 10);
+
+        var guess = questions(a, b);
+        guess = Number(guess);
+
+        while(guess !== -1)
+        {
+
+            while(solution === false)
+            {
+                if (Number(guess) === (a * b))
+                {
+                    solution = true;
+                    window.alert("Very Good!");
+                }
+                else
+                {
+                    solution = false;
+                    window.alert("No. Please try again.");
+                    guess = questions(a,b);
+                }
+            }
+            solution = false;
+            a = Math.floor(Math.random() * 10);
+            b = Math.floor(Math.random() * 10);
+            guess = questions(a, b);
+            guess = Number(guess);
+        }
+
+        document.write("Finished");
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

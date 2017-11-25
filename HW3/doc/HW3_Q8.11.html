@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script type="text/javascript">
+        var product1 = 2.98;
+        var product2 = 4.50;
+        var product3 = 9.98;
+        var product4 = 4.49;
+        var product5 = 6.87;
+
+        var sum = 0;
+        var sentinal = window.prompt
+        ("Choose the product number you want to purchase \n" +
+            "Enter 0 to exit \n" +
+            "Product1: " + product1 +
+            "\n Product2: " + product2 +
+            "\n Product3: " + product3 +
+            "\n Product4: " + product4 +
+            "\n Product5: " + product5);
+        while(sentinal != 0)
+        {
+            var quant = window.prompt("How many do you want to purcahse");
+            switch(sentinal)
+            {
+                case '1':
+                {
+                    sum = sum + (product1 * quant);
+                }
+                break;
+
+                case '2':
+                {
+                    sum = sum + (product2 * quant);
+                }
+                break;
+
+                case '3':
+                {
+                    sum = sum + (product3 * quant);
+                }
+                break;
+
+                case '4':
+                {
+                    sum = sum + (product4 * quant);
+                }
+                break;
+
+                case '5':
+                {
+                    sum = sum + (product5 * quant);
+                }
+                break;
+
+                default:
+                {
+                    document.write("default");
+                }
+            }
+
+            sentinal = window.prompt
+            ("Choose the product number you want to purchase \n" +
+                "Enter 0 to exit \n" +
+                "Product1: " + product1 +
+                "\n Product2: " + product2 +
+                "\n Product3: " + product3 +
+                "\n Product4: " + product4 +
+                "\n Product5: " + product5);
+        }
+
+        document.write("Total: " + sum);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

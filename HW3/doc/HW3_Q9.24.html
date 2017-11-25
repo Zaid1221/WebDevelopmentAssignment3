@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script type="text/javascript">
+        function questions(a, b)
+        {
+            return (window.prompt("How much is " + a + " times " + b + "?"));
+        }
+
+        //TODO: Make to take the quiz again
+
+        var solution = false;
+
+        var correct = ["Very good!", "Excellent!", "Nice work!", "Keep up the good work!"];
+        var incorrect = ["No. Please try again.", "Wrong. Try once more.", "Don't give up!", "No. Keep trying."];
+
+        var sentinel = 0;
+        var counter = 0;
+
+        while(sentinel < 10)
+        {
+            var a = Math.floor(Math.random() * 10);
+            var b = Math.floor(Math.random() * 10);
+            var guess = questions(a, b);
+            guess = Number(guess);
+
+            var count = 0;
+
+            while(solution === false)
+            {
+                if (Number(guess) === (a * b))
+                {
+                    if(count === 0)
+                    {
+                        counter++;
+                    }
+                    solution = true;
+                    var c = Math.floor(Math.random() * 4);
+                    window.alert(correct[c]);
+                }
+                else
+                {
+                    solution = false;
+                    var ic = Math.floor(Math.random() * 4)
+                    window.alert(incorrect[ic]);
+                    guess = questions(a,b);
+                }
+                count++;
+            }
+            solution = false;
+            sentinel++;
+        }
+
+        var persentage = (counter / 10) * 100;
+        document.write("Your score is: " + String(persentage));
+
+        if(Number(persentage) < 75)
+        {
+            document.write("<br></br>");
+            document.write("Please ask your instructor for extra help");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

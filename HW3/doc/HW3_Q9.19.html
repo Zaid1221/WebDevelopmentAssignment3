@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW</title>
+    <script type="text/javascript">
+        function ISprime(input)
+        {
+            var x = Number(input);
+
+            if(input > 1)
+            {
+                for (var i = 2; i < x; i++)
+                {
+                    if (x % i === 0)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        var textArea = "";
+
+
+        /*
+        for(var i=2; i<10000 ; i++)
+        {
+            if(ISprime(i) === true)
+            {
+                document.write(i);
+                 document.write(",");
+            }
+        }
+        */
+
+        var sqt = Math.sqrt(10000);
+        for(var i=2; i<sqt; i++)
+        {
+            if (ISprime(i) === true) {
+                textArea += i + ", ";
+            }
+            document.getElementById("output").value = textArea;
+        }
+    </script>
+</head>
+<body onload="script">
+
+<textarea id="output"  rows="40" cols="1000"></textarea>
+
+</body>
+</html>
