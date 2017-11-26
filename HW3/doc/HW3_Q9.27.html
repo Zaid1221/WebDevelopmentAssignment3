@@ -93,7 +93,7 @@
             var sentinel = 0;
             var counter = 0;
 
-            while(sentinel < 3) {
+            while(sentinel < 10) {
                 var a = numbergen();
                 var b = numbergen();
                 var ques = questions(a, b, diff);
@@ -204,7 +204,7 @@
         }
 
         function postquiz(counter) {
-            var persentage = (counter / 3) * 100;
+            var persentage = (counter / 10) * 100;
 
             if(Number(persentage) < 75) {
                 window.prompt("Your score is: " + String(persentage) +
