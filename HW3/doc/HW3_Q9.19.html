@@ -1,54 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>HW</title>
-    <script type="text/javascript">
-        function ISprime(input)
-        {
-            var x = Number(input);
+    <title>Random numbers</title>
+</head>
 
-            if(input > 1)
-            {
-                for (var i = 2; i < x; i++)
-                {
-                    if (x % i === 0)
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
+<script type="text/javascript">
+
+    function test() {
 
         var textArea = "";
 
-
-        /*
-        for(var i=2; i<10000 ; i++)
+        for(var i=1; i<1000; i++)
         {
-            if(ISprime(i) === true)
+            if(isNumPrime(i)==true)
             {
-                document.write(i);
-                 document.write(",");
-            }
-        }
-        */
+                //document
+                //document.writeln(i);
+                textArea += i + "\n";
+                // break;
+                //info=i;
+                //var textarea= document.getElementById("primes");
+                //document.getElementById("result").innerHTML="<textarea>"+len+"</textarea>";
+                //	break;
+                // y=i.toString();
 
-        var sqt = Math.sqrt(10000);
-        for(var i=2; i<sqt; i++)
-        {
-            if (ISprime(i) === true) {
-                textArea += i + ", ";
             }
             document.getElementById("output").value = textArea;
-        }
-    </script>
-</head>
-<body onload="script">
 
-<textarea id="output"  rows="40" cols="1000"></textarea>
+            //info=y+newstring;
+            //document.writeln("<textarea> "+info+"</textarea> ");
+            //document.getElementById("output").value = info;
+
+        }
+    }
+
+
+    function isNumPrime(n)
+    {
+
+        if (n == 0 || n == 1) {
+
+            return false;
+
+        } else {
+
+// loop from 2 to n/2
+
+            for (var i = 2; i <= n/2; i++) {
+
+// if any number is divisable by i then its not a prime number
+
+                if (n % i == 0) {
+
+                    return false
+
+                }
+
+            }
+
+            return true;
+
+        }
+
+    }
+</script>
+<body onload="test()">
+
+<textarea id="output"  rows="40" cols="10"></textarea>
 
 </body>
 </html>
