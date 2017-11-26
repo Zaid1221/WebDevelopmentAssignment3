@@ -4,63 +4,90 @@
     <meta charset="UTF-8">
     <title>HW</title>
     <script type="text/javascript">
+
+        quiz();
+        var loop = false;
+        while(loop === false)
+        {
+            var option = window.prompt("Do you want to take the exam again" +
+                "1: Yes" +
+                "2: No");
+            option = Number(option);
+
+            if(option === 1)
+            {
+                quiz();
+            }
+            else
+            {
+                loop = true;
+            }
+        }
+
+
         function questions(a, b)
         {
             return (window.prompt("How much is " + a + " times " + b + "?"));
         }
 
-        //TODO: Make to take the quiz again
-
-        var solution = false;
-
-        var correct = ["Very good!", "Excellent!", "Nice work!", "Keep up the good work!"];
-        var incorrect = ["No. Please try again.", "Wrong. Try once more.", "Don't give up!", "No. Keep trying."];
-
-        var sentinel = 0;
-        var counter = 0;
-
-        while(sentinel < 10)
+        function quiz()
         {
-            var a = Math.floor(Math.random() * 10);
-            var b = Math.floor(Math.random() * 10);
-            var guess = questions(a, b);
-            guess = Number(guess);
+            var solution = false;
 
-            var count = 0;
+            var correct = ["Very good!", "Excellent!", "Nice work!", "Keep up the good work!"];
+            var incorrect = ["No. Please try again.", "Wrong. Try once more.", "Don't give up!", "No. Keep trying."];
 
-            while(solution === false)
+            var sentinel = 0;
+            var counter = 0;
+
+            while(sentinel < 10)
             {
-                if (Number(guess) === (a * b))
+                var a = Math.floor(Math.random() * 10);
+                var b = Math.floor(Math.random() * 10);
+                var guess = questions(a, b);
+                guess = Number(guess);
+
+                var count = 0;
+
+                while(solution === false)
                 {
-                    if(count === 0)
+                    if (Number(guess) === (a * b))
                     {
-                        counter++;
+                        if(count === 0)
+                        {
+                            counter++;
+                        }
+                        solution = true;
+                        var c = Math.floor(Math.random() * 4);
+                        window.alert(correct[c]);
                     }
-                    solution = true;
-                    var c = Math.floor(Math.random() * 4);
-                    window.alert(correct[c]);
+                    else
+                    {
+                        solution = false;
+                        var ic = Math.floor(Math.random() * 4)
+                        window.alert(incorrect[ic]);
+                        guess = questions(a,b);
+                    }
+                    count++;
                 }
-                else
-                {
-                    solution = false;
-                    var ic = Math.floor(Math.random() * 4)
-                    window.alert(incorrect[ic]);
-                    guess = questions(a,b);
-                }
-                count++;
+                solution = false;
+                sentinel++;
             }
-            solution = false;
-            sentinel++;
+
+            postquiz(counter);
         }
 
-        var persentage = (counter / 10) * 100;
-        document.write("Your score is: " + String(persentage));
-
-        if(Number(persentage) < 75)
+        function postquiz(counter)
         {
-            document.write("<br></br>");
-            document.write("Please ask your instructor for extra help");
+            var persentage = (counter / 10) * 100;
+            window.prompt("Your score is: " + String(persentage));
+
+            if(Number(persentage) < 75)
+            {
+                window.prompt("Please ask your instructor for extra help");
+            }
         }
+
 
     </script>
 </head>

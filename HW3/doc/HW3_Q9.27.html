@@ -4,149 +4,216 @@
     <meta charset="UTF-8">
     <title>HW</title>
     <script type="text/javascript">
-        function questions(a, b, diff)
-        {
-            switch(Number(diff))
-            {
-                case 0:
-                {
-                    return (window.prompt("How much is " + a + " + " + b + "?"));
-                }
-                    break;
-
-                case 1:
-                {
-                    return (window.prompt("How much is " + a + " - " + b + "?"));
-                }
-                    break;
-
-                case 2:
-                {
-                    return (window.prompt("How much is " + a + " * " + b + "?"));
-                }
-                    break;
-
-                case 3:
-                {
-                    return (window.prompt("How much is " + a + " / " + b + "?"));
-                }
-                    break;
-
-                case 4:
-                {
-                    diff = Math.floor(Math.random() * 4);
-                    switch(Number(diff))
-                    {
-                        case 0: {
-                            return (window.prompt("How much is " + a + " + " + b + "?"));
-                        }
-                            break;
-
-                        case 1: {
-                            return (window.prompt("How much is " + a + " - " + b + "?"));
-                        }
-                            break;
-
-                        case 2: {
-                            return (window.prompt("How much is " + a + " * " + b + "?"));
-                        }
-                            break;
-
-                        case 3: {
-                            return (window.prompt("How much is " + a + " / " + b + "?"));
-                        }
-                            break;
-                    }
-                }
-            }
-        }
 
         var level = window.prompt("Enter in the grade level" +
             "\n 1: Single Digit Numbers Only" +
             "\n 2: Double Digit Numbers Only" +
             "\n 3: Triple Digit Numbers Only");
-
+        level = Number(level);
         var n;
-        switch(Number(level))
-        {
-            case 1:
-            {
+        switch(Number(level)) {
+            case 1: {
                 n = 10;
             }
                 break;
 
-            case 2:
-            {
+            case 2: {
                 n = 100;
             }
                 break;
 
-            case 3:
-            {
+            case 3: {
                 n = 1000;
             }
                 break;
         }
 
-        var diff = window.prompt("Enter the operation you want to practice" +
-            "\n 0: Addition" +
-            "\n 1: Subtraction" +
-            "\n 2: Multiplication" +
-            "\n 3: Division" +
-            "\n 4: All");
 
-        var solution = false;
+       var diff = window.prompt("Enter the operation you want to practice" +
+           "\n 1: Addition" +
+           "\n 2: Subtraction" +
+           "\n 3: Multiplication" +
+           "\n 4: Division" +
+           "\n 5: All");
+        diff = Number(diff)
 
         var correct = ["Very good!", "Excellent!", "Nice work!", "Keep up the good work!"];
         var incorrect = ["No. Please try again.", "Wrong. Try once more.", "Don't give up!", "No. Keep trying."];
 
-        var sentinel = 0;
-        var counter = 0;
+        quiz();
+        var loop = false;
+        while(loop === false) {
+            var option = window.prompt("Do you want to take the exam again" +
+                "1: Yes" +
+                "2: No");
+            option = Number(option);
 
-        while(sentinel < 3)
-        {
-            var a = Math.floor(Math.random() * n);
-            var b = Math.floor(Math.random() * n);
-            var guess = questions(a, b, diff);
-            guess = Number(guess);
-
-            var count = 0;
-
-            while(solution === false)
-            {
-
-                if (Number(guess) === (a * b))
-                {
-                    if(count === 0)
-                    {
-                        counter++;
+            if(option === 1) {
+                level = window.prompt("Enter in the grade level" +
+                    "\n 1: Single Digit Numbers Only" +
+                    "\n 2: Double Digit Numbers Only" +
+                    "\n 3: Triple Digit Numbers Only");
+                level = Number(level);
+                var n;
+                switch(Number(level)) {
+                    case 1: {
+                        n = 10;
                     }
-                    solution = true;
-                    var c = Math.floor(Math.random() * 4);
-                    window.alert(correct[c]);
+                        break;
+
+                    case 2: {
+                        n = 100;
+                    }
+                        break;
+
+                    case 3:{
+                        n = 1000;
+                    }
+                        break;
                 }
-                else
-                {
-                    solution = false;
-                    var ic = Math.floor(Math.random() * 4)
-                    window.alert(incorrect[ic]);
-                    guess = questions(a,b);
-                }
-                count++;
+                diff = window.prompt("Enter the operation you want to practice" +
+                    "\n 1: Addition" +
+                    "\n 2: Subtraction" +
+                    "\n 3: Multiplication" +
+                    "\n 4: Division" +
+                    "\n 5: All");
+                diff = Number(diff)
+                quiz();
             }
-            solution = false;
-            sentinel++;
+            else {
+                loop = true;
+            }
         }
 
-        var persentage = (counter / 3) * 100;
-        document.write("Your score is: " + String(persentage));
+//----------------------------------------------------------------------------------------------------------------------------------------------------
 
-        if(Number(persentage) < 75)
-        {
-            document.write("<br></br>");
-            document.write("Please ask your instructor for extra help");
+        function quiz() {
+            var solution = false;
+
+            var sentinel = 0;
+            var counter = 0;
+
+            while(sentinel < 3) {
+                var a = numbergen();
+                var b = numbergen();
+                var ques = questions(a, b, diff);
+
+                var question  = ques[0];
+                var answer = ques[1];
+
+                var guess = window.prompt(question);
+
+                answer = Number(answer);
+                guess = Number(guess);
+
+                var count = 0;
+
+                while(solution === false) {
+                    if (guess === answer) {
+                        if(count === 0) {
+                            counter++;
+                        }
+                        solution = true;
+                        var c = Math.floor(Math.random() * 4);
+                        window.alert(correct[c]);
+                    }
+                    else {
+                        solution = false;
+                        var ic = Math.floor(Math.random() * 4)
+                        window.alert(incorrect[ic]);
+                        guess = window.prompt(question);
+                        guess = Number(guess);
+                    }
+                    count++;
+                }
+                solution = false;
+                sentinel++;
+            }
+
+            postquiz(counter);
         }
 
+        function numbergen() {
+            switch(level) {
+                case 1: {
+                    return Math.floor(Math.random() * (10 - 1)) + 1;
+                }
+                    break;
+
+                case 2:{
+                    return Math.floor(Math.random() * (100 - 10)) + 10;
+                }
+                    break;
+
+                case 3: {
+                    return Math.floor(Math.random() * (1000 - 100)) + 100;
+                }
+                    break;
+            }
+        }
+
+        function questions(a, b, diff, x) {
+            var ques = [];
+            ques[0] = "";
+            ques[1] = "";
+
+            var phrase;
+            switch(diff) {
+                case 1: {
+                    phrase = "How much is " + a + " + " + b + "?";
+                    ques[0] = phrase;
+                    ques[1] = String(a + b);
+                }
+                break;
+
+                case 2:{
+                    phrase = "How much is " + a + " - " + b + "?";
+                    ques[0] = phrase;
+                    ques[1] = String(a - b);
+                }
+                break;
+
+                case 3: {
+                    phrase = "How much is " + a + " * " + b + "?";
+                    ques[0] = phrase;
+                    ques[1] = String(a * b);
+                }
+                break;
+
+                case 4: {
+                    phrase = "How much is " + a + " / " + b + "?";
+                    ques[0] = phrase;
+                    ques[1] = String(a / b);
+                }
+                break;
+
+                case 5: {
+                    var x = Math.floor(Math.random() * (5 - 1)) + 1;
+                    var q = [];
+                    q[1] = "How much is " + a + " + " + b + "?";
+                    q[2] = "How much is " + a + " - " + b + "?";
+                    q[3] = "How much is " + a + " * " + b + "?";
+                    q[4] = "How much is " + a + " / " + b + "?";
+                    phrase = q[x];
+                    ques[0] = phrase;
+                    ques[1] = String(a + b);
+                }
+                break;
+            }
+            return ques;
+        }
+
+        function postquiz(counter) {
+            var persentage = (counter / 3) * 100;
+
+            if(Number(persentage) < 75) {
+                window.prompt("Your score is: " + String(persentage) +
+                    "\n Please ask your instructor for extra help");
+            }
+            else {
+                window.prompt("Your score is: " + String(persentage));
+            }
+        }
     </script>
 </head>
 <body>
